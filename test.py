@@ -10,6 +10,8 @@ depth = len(ds[0])
 
 
 root = buildPrefixTree(ds)
+if root == -1:
+      print('no composite key')
 finder = NonKeyFinder(depth)
 finder.find(root, 0)
 kFinder = KeyFinder(depth)

@@ -6,6 +6,7 @@ def merge(toMerge):
         mergedNode = toMerge[0]
     else:
         mergedNode = Node()
+        mergedNode.NOofEntity = sum(node.NOofEntity for node in toMerge)
         dic = {} #key: val, value: [cell]
         isLeaf = False #judge whether this is at the leaf level
         for node in toMerge:
@@ -14,7 +15,7 @@ def merge(toMerge):
                     dic[val] = []
                 dic[val].append(cell)
 
-                if cell.isLeaf:
+                if cell.isLeaf():
                     isLeaf = True
 
         # 5
@@ -24,7 +25,6 @@ def merge(toMerge):
 
             if isLeaf:
                 newCell.leafCount = sum(cell.leafCount for cell in cellList)
-                newCell.isLeaf = True # here is what I added
             else:
                 partialSet = [cell.child for cell in cellList]
                 newCell.child = merge(partialSet)
