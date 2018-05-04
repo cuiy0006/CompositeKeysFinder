@@ -18,6 +18,7 @@ class NonKeyFinder:
                 if storedNonKey & NonKey == storedNonKey:
                     self.NonKeySet.remove(storedNonKey)
             self.NonKeySet.add(NonKey)
+            print(NonKey)
 
     def find(self, root, attrNo):
         root.visited = True
