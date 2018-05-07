@@ -3,8 +3,6 @@ from CompositeKeysStorage import KeysStorage
 from PrefixTreeCreation import buildPrefixTree
 from NonKeyFind import NonKeyFinder
 from KeyFind import KeyFinder
-import csv
-
 
 def callMeStart(filePaths, columnNames):
 
