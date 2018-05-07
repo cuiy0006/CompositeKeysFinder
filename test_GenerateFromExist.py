@@ -6,7 +6,9 @@ keys = [set(['this is the 1st', 'this is the 2nd', 'this is the 3rd']),
         set(['this is the 2nd']),
         set(['this is th 1st', 'this is tha 2nd', 'this is the 3rd'])]
 
-attrslst = [set(['this is the 1st', 'this is the 2nd', 'this is the 3rd', 'this', 'is', 'nothing'])]
+attrslst = [set(['this s the 1st', 'thiis is the 2nd', 'this is the 3rd', 'this', 'is', 'nothing']),
+            set(['thi si the 1st', 'this is the 2nd', 'this is the 3rd', 'attach', 'nothing']),
+            set(['meaningless', 'this is he 2nd0', 'yes', 'this is the 3rrd0', 'no', 'this is the 4th'])]
 
 ks = KeysStorage()
 for key in keys:

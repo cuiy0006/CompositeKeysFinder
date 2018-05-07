@@ -21,7 +21,7 @@ def callMeStart(filePaths, columnNames):
             # build prefix tree
             root, depth = buildPrefixTree(path)
             if root == -1:
-                dic[path] = None
+                dic[path] = []
             else:
                 # initialize NonKeyFinder and find non-keys
                 nonKFinder = NonKeyFinder(depth)
