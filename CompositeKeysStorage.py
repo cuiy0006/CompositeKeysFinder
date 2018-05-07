@@ -29,7 +29,7 @@ class KeysStorage:
     def findCompositeKeys(self, allAttrs, mode=GREEDY):
         """
         :type: set(str)
-        :type: LAZY, GREEDY
+        :type: LAZY or GREEDY
         :rtype: [set(str)]
         """
         newToOldAttrs = {}

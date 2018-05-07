@@ -1,10 +1,15 @@
-from common import setToPrintSet
+from common import decode
 from CompositeKeysStorage import KeysStorage
 from PrefixTreeCreation import buildPrefixTree
 from NonKeyFind import NonKeyFinder
 from KeyFind import KeyFinder
 
 def callMeStart(filePaths, columnNames):
+    '''
+    :type: [str]
+    :type: [[str]]
+    :rtype: {str : set(str)} 
+    '''
 
     ks = KeysStorage()
     dic = {} # path -> keys
@@ -13,18 +18,25 @@ def callMeStart(filePaths, columnNames):
 
         keys = ks.findCompositeKeys(columnNames[i])
         if len(keys) == 0:
+            # build prefix tree
             root, depth = buildPrefixTree(path)
             if root == -1:
                 dic[path] = None
             else:
+                # initialize NonKeyFinder and find non-keys
                 finder = NonKeyFinder(depth)
                 finder.find(root, 0)
+
+                # initialize KeyFinder and find keys from non-keys
                 kFinder = KeyFinder(depth)
-                keys = kFinder.find(finder.NonKeySet) # format ['000000010110010000', '100000000000000000', '010000000010010000']
-                for key in setToPrintSet(keys, depth):
+                keys = kFinder.find(finder.NonKeySet) # format {29318, 21938, 1121}
+
+                translatedKeys = [] # [{'col1', 'col2', 'col3'}, {'col2', 'col4'}]
+                for key in decode(keys, depth): # format ['000000010110010000', '100000000000000000', '010000000010010000']
                     translatedKey = set(columnNames[i][j] for j, digit in enumerate(key) if digit == '1') # translate '000000010110010000' to format {'col1', 'col2', 'col3'}
+                    translatedKeys.append(translatedKey)
                     ks.insert(translatedKey)
-                dic[path] = keys
+                dic[path] = translatedKeys
         else:
             dic[path] = keys
 
