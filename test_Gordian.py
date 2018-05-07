@@ -13,7 +13,7 @@ def setToPrintSet(s, depth):
       pSet = []
       for key in s:
             printKey = []
-            for i in range(depth):
+            for _ in range(depth):
                   if key & 1 == 1:
                         printKey.append('1')
                   else:
@@ -25,6 +25,11 @@ def setToPrintSet(s, depth):
 filePath1 = 'd:\\toytest.csv'
 filePath2 = 'd:\\open-10000-1.csv'
 filePath3 = 'd:\\parking-10000.csv'
+filePath4 = 'd:\\4.csv' 
+filePath5 = 'd:\\5.csv' 
+filePath6 = 'd:\\6.csv' 
+filePath7 = 'd:\\7.csv' 
+filePath8 = 'd:\\8.csv' 
 
 root, depth = buildPrefixTree(filePath2)
 if root == -1:
