@@ -6,6 +6,7 @@ class AttrStorage:
         self.dic = {} # attr -> parent attr, ancestor's parent is itself, child's parent is parent
         self.attrs = set()
 
+    # union find to group attributes
     def findAncestor(self, attr):
         """
         :type: str, attribute

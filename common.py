@@ -15,7 +15,7 @@ class Cell:
     def isLeaf(self):
         return self.leafCount > 0
 
-
+#translate every integer like 21091 to binary like '1010111011'
 def decode(s, depth):
     '''
     :type: set(int)

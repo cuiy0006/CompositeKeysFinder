@@ -2,24 +2,35 @@
 class KeyFinder:
     def __init__(self, depth):
         self.depth = depth
+        # construct a all-one binary integer 111111111
         self.allOnes = 0
         for i in range(depth):
             self.allOnes |= (1 << i)
 
     def insert(self, KeySet, key):
+        '''
+        :type: {int}
+        :type: int
+        '''
         toAdd = True
+        # if key covers stored key, then stored key is candidate key that covers key, so not add key
         for storedKey in KeySet:
-            if storedKey & key == storedKey: # means key covers storedKey, storedKey is more short and more like a candidate key
+            if storedKey & key == storedKey:
                 toAdd = False
                 break
         
+        # if add key, remove all stored keys that are covered by key
         if toAdd:
             for storedKey in list(KeySet):
-                if storedKey & key == key: # if storedKey covers key, remove it
+                if storedKey & key == key:
                     KeySet.remove(storedKey)
             KeySet.add(key)
 
     def find(self, NonKeySet):
+        '''
+        :type: {int}
+        :rtype: {int}
+        '''
         KeySet = set()
         for nonKey in NonKeySet:
             complementSet = nonKey ^ self.allOnes # complement of nonKey, example nonKey: 1010101, complement: 0101010

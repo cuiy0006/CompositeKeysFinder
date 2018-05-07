@@ -2,6 +2,10 @@ from common import Cell, Node
 import csv
 
 def buildPrefixTree(filePath):
+    '''
+    :type: str
+    :rtype: (Node, int)
+    '''
     root = Node()
     depth = 0
 
@@ -12,6 +16,7 @@ def buildPrefixTree(filePath):
             depth = len(entry)
             # tier tree from top to down
             node = root
+            # when one entry pass this node, + 1
             node.NOofEntity += 1
 
             t = entry

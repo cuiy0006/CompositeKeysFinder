@@ -1,6 +1,8 @@
 from AttributesStorage import AttrStorage
 
+# lazy mode is to find any one composite key, greedy is to find all composite keys from existing keys
 LAZY, GREEDY = 0, 1
+
 class KeysStorage:
     def __init__(self):
         self.keys = [] # [attrs]
@@ -32,19 +34,25 @@ class KeysStorage:
         :type: LAZY or GREEDY
         :rtype: [set(str)]
         """
+        # ancestor attr -> this attr
         newToOldAttrs = {}
+        # set(ancestor attr)
         new_allAttrs = set()
+
+        # convert attrs to ancestors
         for attr in allAttrs:
             ancestor = self.attrs.insert(attr)
             newToOldAttrs[ancestor] = attr
             new_allAttrs.add(ancestor)
 
         res = []
+        # if existing key is a subset of this attrs, then add it to result (only record composite keys consisting of more than 1 attrs)
         for storedAttrs in self.keys:
             if storedAttrs.issubset(new_allAttrs):
                 old_Attrs = set(newToOldAttrs[attr] for attr in storedAttrs)
-                res.append(old_Attrs)
-                if mode == LAZY:
-                    return res
-        return list(filter(lambda x: len(x) >= 2, res))
+                if len(old_Attrs) >= 2:
+                    res.append(old_Attrs)
+                    if mode == LAZY:
+                        return res
+        return res
         
