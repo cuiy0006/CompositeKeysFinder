@@ -16,4 +16,5 @@ for key in keys:
 
 for allAttrs in attrslst:
     res = ks.findCompositeKeys(allAttrs)
+    print(res)
     print(0)

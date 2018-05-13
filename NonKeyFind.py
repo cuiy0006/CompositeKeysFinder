@@ -23,7 +23,7 @@ class NonKeyFinder:
                 if storedNonKey & NonKey == storedNonKey:
                     self.NonKeySet.remove(storedNonKey)
             self.NonKeySet.add(NonKey)
-            # print(NonKey)
+            print(NonKey)
 
     def find(self, root, attrNo):
         '''
